@@ -1,0 +1,302 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html, body {
+    height: 100%;
+  }
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  /*
+    6. Improve media defaults
+  */
+  /* img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  } */
+  /*
+    7. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    8. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+:root{
+    /* COLORS */
+
+    --clr-primary-300: hsl(210, 46%, 95%);
+    --clr-primary-400: hsl(212, 23%, 69%);
+    --clr-primary-500: hsl(214, 17%, 51%);
+    --clr-primary-700: hsl(217, 19%, 35%);
+    --clr-shadow: 212, 23%, 69%;
+
+    /* TYPOGRAPHY */
+
+    --ff-main: 'Manrope', sans-serif; ;
+
+    --fs-400: 0.8125rem;
+    --fs-700: 1.25rem;
+
+    --fw-500: 500;
+    --fw-700: 700;
+}
+
+body{
+    background-color: var(--clr-primary-300);
+    font-family: var(--ff-main);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-500);
+}
+
+main{
+    min-height: 100dvh;
+    display: grid;
+    place-content: center;
+}
+
+article.article-preview{
+    max-width: 730px;
+    background-color: white;
+    border-radius: .75em;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 1em;
+    box-shadow: 5px 15px 15px 5px hsla(var(--clr-shadow), .1);
+}
+
+@media (max-width: 725px) {
+  article.article-preview{
+    margin: 1.85em;
+    grid-template-columns: 1fr;
+  }
+}
+
+picture.preview__img{
+    background: url(images/drawers.jpg);
+    background-position: left;
+    background-size: cover;
+    border-radius: .75em 0 0 .75em;
+}
+
+@media (max-width: 725px){
+  picture.preview__img{
+    height: 27dvh;
+    border-radius: .75em .75em 0 0;
+  }
+}
+
+div.preview__article{
+    padding: 2.5em 2.125em;
+    display: flex;
+    flex-direction: column;
+    gap: .8em;
+}
+
+@media (max-width: 725px) {
+  div.preview__article{
+    padding: 1.5em 2.75em;
+  }
+}
+
+h1.article__title,
+h2.details__name{
+    color: var(--clr-primary-700);
+    font-weight: var(--fw-700);
+}
+
+h1.article__title{
+    font-size: var(--fs-700);
+    line-height: 1.4;
+}
+
+@media (max-width:725px){
+  h1.article__title{
+    font-size: 1rem;
+  }
+}
+
+p.article__text{
+    color: var(--clr-primary-500);
+    line-height: 1.55;
+}
+
+div.preview__details{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.25em;
+    margin-top: .9em;
+    position: relative;
+}
+
+@media (max-width: 725px){
+  div.preview__details{
+    /* padding-top: 3em;
+    padding-bottom: 1em;
+    margin-top: -1.5em;
+    margin-bottom: ; */
+    padding-top: .5em;
+  }
+}
+
+picture.details__pic img{
+    width: 3em;
+    height: auto;
+    border-radius: 100%;
+}
+
+h2.details__name{
+    font-size: var(--fw-500);
+    font-weight: var(--fw-700);
+}
+
+p.details__date,
+div.share-btn{
+    color: var(--clr-primary-400);
+}
+
+div.share-btn{
+    width: 2.25em;
+    height: 2.25em;
+    background-color: var(--clr-primary-300);
+    border-radius: 100%;
+    align-self: center;
+    margin-left: auto;
+    margin-right: 1em;
+    display: grid;
+    place-content: center;
+    position: relative;
+    overflow: visible;
+}
+
+@media (max-width: 725px){
+  div.share-btn{
+    margin-right: 0;
+  }
+}
+
+div.share-btn svg{
+  fill: #6E8098;
+}
+
+div.share-btn.active{
+  background-color: var(--clr-primary-500);
+}
+
+div.share-btn.active svg{
+  fill: white;
+}
+
+ div.share{
+    position: absolute; 
+    bottom: 4.5em;
+    right: -25.5%;
+    border-radius: .75em;
+    background-color: var(--clr-primary-700);
+    padding: 1.3em 2.8em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25em;
+    z-index: 0;
+}
+
+div.share img{
+    width: calc(var(--fs-400)*1.6);
+    height: auto;
+    display: block;
+}
+
+/*  MEDIA ->  left: -3.125em; */
+
+
+div.share::after{
+    content: "";
+    position: absolute;
+    height: 1.25em;
+    width: 1.25em;
+    background-color: var(--clr-primary-700);
+    bottom: -15%;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+div.share div.share-btn{
+  display: none;
+}
+
+@media (max-width:725px){
+  div.share{
+    padding: 1.25em 2.75em;
+    bottom: -1.5em;
+    inset-inline: -2.75em;
+    border-radius: 0 0 .75em .75em;
+  }
+
+  div.share::after{
+    display: none;
+  }
+
+  div.share div.share-btn{
+    display: grid;
+    align-self: center;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+div.share h3{
+    color: var(--clr-primary-400);
+    font-size: var(--fs-400);
+    text-transform: uppercase;
+    font-weight: var(--fw-400);
+    letter-spacing: .35em;
+}
+
+.hidden{
+    display: none !important;
+}
+
+
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+}
+
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
